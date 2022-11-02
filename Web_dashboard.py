@@ -1,6 +1,12 @@
 import pandas as pd  # pip install pandas openpyxl
-import plotly.express as px  # pip install plotly-express
+import plotly.express as px  #pip install plotly-express
 import streamlit as st  # pip install streamlit
+
+
+
+# Streamlit > ~1.12
+
+
 
 
 #path setting
@@ -15,36 +21,37 @@ layout="wide")
 
 #
 #************easy and effective************
-##df=pd.read_excel(io='supermarkt_sales.xlsx',skiprows=3)
+df=pd.read_excel(io='supermarkt_sales.xlsx',skiprows=3)
 
-# Add 'hour' column to dataframe
-##df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
+#Add 'hour' column to dataframe
+df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
 
 
-##st.dataframe(df) 
+st.dataframe(df) 
 
 #*********************
 
 #advance to 
 #To facilitate the process of loading the data set 
 # by saving it in a temporary memory cache
-@st.cache
-def get_data_from_excel():
-    df = pd.read_excel(
-        io='supermarkt_sales.xlsx',
+#@st.cache
+#def get_data_from_excel():
+    #df = pd.read_excel(
+        #io='supermarkt_sales.xlsx',
         
-        skiprows=3,
+        #skiprows=3,
     
-    )
+    #) 
     # Add 'hour' column to dataframe
-    df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
-    return df
+    #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
+    #return df
 
-df = get_data_from_excel()
+#df = get_data_from_excel()
 
 
 # ---- SIDEBAR ----
 st.sidebar.header("Please Filter Here:")
+
 
 #filters 
 
@@ -52,6 +59,7 @@ city = st.sidebar.multiselect(
     "Select the City:",
     options=df["City"].unique(),
     default=df["City"].unique()
+
 )
 
 customer_type = st.sidebar.multiselect(
