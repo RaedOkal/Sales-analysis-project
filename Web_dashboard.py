@@ -1,6 +1,11 @@
-import plotly.express as px 
-import streamlit as st 
-import pandas as pd
+import pandas as pd  # pip install pandas openpyxl
+import plotly.express as px  # pip install plotly-express
+import streamlit as st  # pip install streamlit
+
+
+#path setting
+#current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+#excel_file = current_dir / "المستندات" / "supermarkt_sales.xlsx"
 
 st.set_page_config(page_title="Sales Dashboard ",
 page_icon=":bar_chart:",
@@ -26,12 +31,10 @@ layout="wide")
 @st.cache
 def get_data_from_excel():
     df = pd.read_excel(
-        io="supermarkt_sales.xlsx",
-        engine="openpyxl",
-        sheet_name="Sales",
+        io='supermarkt_sales.xlsx',
+        
         skiprows=3,
-        usecols="B:R",
-        nrows=1000,
+    
     )
     # Add 'hour' column to dataframe
     df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
@@ -152,3 +155,5 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
