@@ -37,9 +37,13 @@ layout="wide")
 @st.cache
 def get_data_from_excel():
     df = pd.read_excel(
-        io='supermarkt_sales.xlsx',
-        
+        io='supermarkt_sales.xlsx',engine="openpyxl",
+        sheet_name="Sales",
         skiprows=3,
+        usecols="B:R",
+        nrows=1000,
+        
+      
     
     
     ) 
@@ -145,7 +149,7 @@ fig_hourly_sales.update_layout(
     yaxis=(dict(showgrid=False)),
 )
 #st.plotly_chart(fig_hourly_sales)
-
+#
 
 #to produce a charts next to each other Horizontaly
 left_column, right_column = st.columns(2)
@@ -154,6 +158,10 @@ right_column.plotly_chart(fig_product_sales, use_container_width=True)
 
 #st.plotly_chart(fig_hourly_sales)
 
+
+#deploy
+#pip instal pipreqs
+#pipreqs --encoding=utf8
 
 # ---- HIDE STREAMLIT STYLE ----
 hide_st_style = """
@@ -164,5 +172,8 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
+
 
 
