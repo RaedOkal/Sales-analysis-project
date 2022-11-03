@@ -21,32 +21,33 @@ layout="wide")
 
 #
 #************easy and effective************
-df=pd.read_excel(io='supermarkt_sales.xlsx',skiprows=3)
+#df=pd.read_excel(io='supermarkt_sales.xlsx',skiprows=3)
 
 #Add 'hour' column to dataframe
-df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
+#df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
 
 
-st.dataframe(df) 
+#st.dataframe(df) 
 
 #*********************
 
-#advance to 
+#advance 
 #To facilitate the process of loading the data set 
 # by saving it in a temporary memory cache
-#@st.cache
-#def get_data_from_excel():
-    #df = pd.read_excel(
-        #io='supermarkt_sales.xlsx',
+@st.cache
+def get_data_from_excel():
+    df = pd.read_excel(
+        io='supermarkt_sales.xlsx',
         
-        #skiprows=3,
+        skiprows=3,
     
-    #) 
-    # Add 'hour' column to dataframe
-    #df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
-    #return df
+    
+    ) 
+     #Add 'hour' column to dataframe
+    df["hour"] = pd.to_datetime(df["Time"], format="%H:%M:%S").dt.hour
+    return df
 
-#df = get_data_from_excel()
+df = get_data_from_excel()
 
 
 # ---- SIDEBAR ----
